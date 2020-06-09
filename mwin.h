@@ -8,7 +8,7 @@
 #include"icon.h"
 #include<QImage>
 #include<string.h>
-#include<QtMultimedia/QMediaPlayer>
+#include<QMediaPlayer>
 #include<QPainter>
 #include<QTimer>
 #include<QKeyEvent>
@@ -34,8 +34,11 @@ protected slots:
     void addbullet();
     void bulletmove();
     //创建四个槽函数，生成怪物和子弹，怪物移动和子弹移动
-    //void rule();//检查是否子弹和怪，塔相遇
+    void rule();//检查是否子弹和怪，塔相遇
 
+
+private slots:
+    void on_beginbottom_clicked();
 
 private:
     Ui::Mwin *ui;

@@ -4,7 +4,7 @@
 #include<QImage>
 #include<string.h>
 
-#include<QtMultimedia/QMediaPlayer>
+#include<QMediaPlayer>
 #include<QPainter>
 #include"icon.h"
 #include"bullet.h"
@@ -17,6 +17,7 @@ public:
     void reset(string name,int xx,int yy);//重新设置函数
 
     defenobj(defenobj &obj0);//复制构造
+    virtual ~defenobj(){}//析构函数
     bullet* creatbullet();//制造子弹
     void death();//死去的声音
     void paint(QPainter*p);//画出对应图像

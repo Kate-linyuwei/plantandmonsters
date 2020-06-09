@@ -4,6 +4,7 @@
 #include<QImage>
 #include<QPainter>
 #include"icon.h"
+#include<QMediaPlayer>
 class bullet
 {
 public:

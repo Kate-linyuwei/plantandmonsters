@@ -25,5 +25,5 @@ void bullet::paint(QPainter*p){
     p->drawImage(this->_bulx,this->_buly,this->_bulpic);//画出对应图片
 }
 void bullet::move(){
-    this->_bulx=this->_bulx+32;//移动一格
+    this->_bulx=this->_bulx+32*2;//移动一格
 }

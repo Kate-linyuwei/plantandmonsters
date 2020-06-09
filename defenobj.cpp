@@ -1,7 +1,7 @@
 #include "defenobj.h"
 #include"icon.h"
 #include"bullet.h"
-#include<QtMultimedia/QMediaPlayer>
+#include<QMediaPlayer>
 defenobj::defenobj(string name, int xx, int yy):_icon(_icon.matchicon(name))
 {
     this->_name=name;
@@ -29,7 +29,7 @@ defenobj::defenobj(defenobj &obj0):_icon(_icon.matchicon(obj0._name))
 void defenobj::death()
 {
     QMediaPlayer * eaten=new QMediaPlayer;//创建QMediaPlayer指针
-    eaten->setMedia(QUrl::fromLocalFile(":/music/sound of eaten.mp3"));//选择声音
+    eaten->setMedia(QUrl("qrc:/music/sound of eaten.mp3"));//选择声音
     eaten->setVolume(20);//设置音效
     eaten->play();//播放
 
