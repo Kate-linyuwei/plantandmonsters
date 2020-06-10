@@ -2,7 +2,7 @@
 #include "ui_mwin.h"
 #include<QMediaPlayer>
 
-
+int Mwin::prog=0;//设置初始进度为0
 Mwin::Mwin(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::Mwin)
@@ -14,16 +14,7 @@ Mwin::Mwin(QWidget *parent) :
     player->setVolume(30);
     player->play();//放音乐
 
-   /* myworld.originset();//设置初始塔怪
-    timing=new QTimer(this);
-    timing->setInterval(2000);//设置间隔1000ms
-    timing->start();//开始计时
-    connect(timing,SIGNAL(timeout()),this,SLOT(addmonster()));
-    connect(timing,SIGNAL(timeout()),this,SLOT(monstermove()));
-    connect(timing,SIGNAL(timeout()),this,SLOT(addbullet()));
-    connect(timing,SIGNAL(timeout()),this,SLOT(bulletmove()));//将定时发生的移动和产生创建联系
-    connect(timing,SIGNAL(timeout()),this,SLOT(rule()));//定时检查伤亡情况
-*/
+
 }
 //Mwin的构造函数
 
@@ -56,6 +47,15 @@ void Mwin::bulletmove(){
 void Mwin::rule(){
     this->myworld.rules();//检查各个物体相遇情况
     this->repaint();
+    this->myworld.endcheck();//检查是否失败
+    if((this->myworld.getlosecheck()==true)||prog>=100){
+        //如果输了或者赢了
+        repaint();//最后画一次
+        timing->stop();//停止计时
+    }
+    int golden=this->myworld.getgold();//得到金币数量
+    ui->moneybox->setValue(golden);//更新金币数量
+
 }
 //以上为五个槽函数
 
@@ -69,10 +69,6 @@ void Mwin::paintEvent(QPaintEvent *event){
     paint->drawImage(132,300,background);//画出背景
     this->myworld.painting(paint);//画出图像
 
-
-
-    QFont font("宋体",10);//设置字体
-    QApplication::setFont(font); //将字体设为QApplication默认字体
     paint->drawText(800,320,tr("welcome to this tower game!"));
     paint->drawText(800,370,tr("you can use keyboard to play"));
     paint->drawText(800,420,tr("push U/I/O/J/K/L can add new tower"));
@@ -80,7 +76,23 @@ void Mwin::paintEvent(QPaintEvent *event){
     paint->drawText(800,520,tr("the roll you add tower to"));
     paint->drawText(800,570,tr("please enjoy your game,thanks!"));
     paint->drawText(132,680,tr("click the buttom to get start"));
-    //添加文字说明
+    //添加规则文字说明
+
+    if(this->myworld.getlosecheck()==true){
+    QFont losefont("宋体",20);
+    paint->setPen(Qt::green);//设置绿色
+    paint->setFont(losefont);//设置字体
+    paint->drawText(132,400,"monster eat your brain!");}
+    //如果失败，写出失败提示
+
+    if(prog>=100){
+        QFont winfont("宋体",25);
+        paint->setPen(Qt::blue);//设置绿色
+        paint->setFont(winfont);//设置字体
+        paint->drawText(132,400,"you win!congratulations!");
+        //如果成功，写出成功提示
+    }
+
 
     paint->end();//画完以后，停用画家
     delete paint;
@@ -128,5 +140,17 @@ void Mwin::on_beginbottom_clicked()
     connect(timing,SIGNAL(timeout()),this,SLOT(monstermove()));
     connect(timing,SIGNAL(timeout()),this,SLOT(addbullet()));
     connect(timing,SIGNAL(timeout()),this,SLOT(bulletmove()));//将定时发生的移动和产生创建联系
-    connect(timing,SIGNAL(timeout()),this,SLOT(rule()));//定时检查伤亡情况
+    connect(timing,SIGNAL(timeout()),this,SLOT(rule()));//定时检查伤亡情况和是否失败
+    connect(timing,SIGNAL(timeout()),this,SLOT(changeprogress()));//定时更新进度
 }//开始键事件
+void Mwin::changeprogress(){
+    prog=prog+5;//增加进度
+    ui->proBar->setValue(prog);//设置进度
+    if(prog>=100){
+        QMediaPlayer* win=new QMediaPlayer;
+        win->setMedia(QUrl("qrc:/music/win.mp3"));//选择成功声音
+        win->setVolume(30);//设置音效
+        win->play();//播放
+        //成功的声音
+    }
+}

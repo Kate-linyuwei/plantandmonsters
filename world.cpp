@@ -1,8 +1,10 @@
 #include "world.h"
 #include"player.h"
 #include<QMediaPlayer>
+#include <QPainter>
 int world::Line=300;//初始化,300
 int world::linetower[3]={0,0,0};//初始化每行都没塔
+bool world::losecheck=false;//初始没有输
 void world::changeline(int ord){
     if(ord==1)
         world::Line++;
@@ -67,6 +69,7 @@ void world::rules(){
                     (*m)->death();//怪物没血，死去声音
                     delete (*m);//回收改怪物，析构
                     monsters.erase(m);//在向量内清除
+                    this->play.earn();//金币增加100
                 }
             }
         }
@@ -84,13 +87,34 @@ void world::rules(){
         //塔与怪
 
     }
-
-
-
-
-
 }
 
+void world::endcheck(){
+    vector<monster*>::iterator m;//怪物迭代器
+    for(m=monsters.begin();m<monsters.end();m++){
+        if((*m)->getX()<=232){
+            //有怪物突破防线
+            this->changelose();
+            //更改输赢状态
+
+            QMediaPlayer * lose=new QMediaPlayer;//创建QMediaPlayer指针
+            lose->setMedia(QUrl("qrc:/music/lose.mp3"));//选择失败声音
+            lose->setVolume(30);//设置音效
+            lose->play();//播放
+            //失败的声音
+
+        }
+    }
+
+   vector<bullet*>::iterator b;//子弹迭代器
+   for(b=bullets.begin();b<bullets.end();b++){
+       if((*b)->getX()>700){
+           delete(*b);//子弹超出界面后失效,析构
+           bullets.erase(b);//在子弹向量内清除
+       }
+   }
+   //清除无用的子弹，节省空间
+}
 void world::addmonster0(int xx, int yy, int type){
     if(type==1){
         monster* newmon=new monster;
@@ -126,6 +150,7 @@ void world::bulletmove0(){
 
 
 void world::getorder(int type){
+    if(this->play.getmoney()>=100){
     int countline=Line%3;//所在行数
     int counttower=linetower[countline];//所在行有多少个塔
     defenobj* tow;
@@ -133,6 +158,15 @@ void world::getorder(int type){
     this->towers.push_back(tow);
     world::linetower[countline]++;
     //加入列表,在该行增加塔数
+    this->play.pay();//买塔花金币100
+    }
+    else {
+        QMediaPlayer * nomoney=new QMediaPlayer;//创建QMediaPlayer指针
+        nomoney->setMedia(QUrl("qrc:/music/nomoney.mp3"));//选择没钱的声音
+        nomoney->setVolume(10);//设置音效
+        nomoney ->play();//播放
+    }
+
 }
 
 

@@ -1,5 +1,5 @@
 #include "player.h"
-
+int player::money=200;//初始200金币
 defenobj*player::addnewobj(int xx, int yy,int type){
     defenobj* palace=new defenobj; //创建新的塔指针
     switch (type) {
@@ -25,7 +25,12 @@ defenobj*player::addnewobj(int xx, int yy,int type){
     return palace;
 }
 //根据ABCDEF六种按键指令建立塔
-
+void player::earn(){
+    money=money+100;//打死一个怪，得到100金币
+}
+void player::pay(){
+    money=money-100;//买一个塔，花费100金币
+}
 
 
 

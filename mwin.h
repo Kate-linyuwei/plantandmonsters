@@ -39,12 +39,12 @@ protected slots:
 
 private slots:
     void on_beginbottom_clicked();
-
+    void changeprogress();//更改进度的槽函数
 private:
     Ui::Mwin *ui;
     world myworld;//创建世界
     QTimer *timing;//计时器
-
+    static int prog;//进度值，到100就赢
 };
 
 #endif // MWIN_H

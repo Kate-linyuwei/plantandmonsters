@@ -6,5 +6,8 @@
     <qresource prefix="/music">
         <file>sound of eaten.mp3</file>
         <file>Mountains.mp3</file>
+        <file>lose.mp3</file>
+        <file>win.mp3</file>
+        <file>nomoney.mp3</file>
     </qresource>
 </RCC>
