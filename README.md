@@ -7,6 +7,12 @@ bullet fight monster
 origin tower ans monster and bullet
 monster and bullet can creat and move in time
 keypress to create tower 
-##1 redpalace 2 bluepalace and another four defferent in 3 4 5 6
+kill monster earn and build towers cost golds
+progress to 100 means win
+monsters go to house means lose 
+win and lose make the timer stop and have music
+there is text beside to introduce rules
+there is begin buttom to get start
 #bug
-can't kill monster because some wrong with rules in class world
+though monster can be hitted and killed,they can get through the tower and get quicker to go to the house
+different towers have the same function,so next period I will add new bullet class inherited origin bullet
