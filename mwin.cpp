@@ -69,14 +69,6 @@ void Mwin::paintEvent(QPaintEvent *event){
     paint->drawImage(132,300,background);//画出背景
     this->myworld.painting(paint);//画出图像
 
-    paint->drawText(800,320,tr("welcome to this tower game!"));
-    paint->drawText(800,370,tr("you can use keyboard to play"));
-    paint->drawText(800,420,tr("push U/I/O/J/K/L can add new tower"));
-    paint->drawText(800,470,tr("push W and S key can change"));
-    paint->drawText(800,520,tr("the roll you add tower to"));
-    paint->drawText(800,570,tr("please enjoy your game,thanks!"));
-    paint->drawText(132,680,tr("click the buttom to get start"));
-    //添加规则文字说明
 
     if(this->myworld.getlosecheck()==true){
     QFont losefont("宋体",20);
