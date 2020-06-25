@@ -3,12 +3,14 @@
 
 #include<QImage>
 #include<string.h>
-
 #include<QMediaPlayer>
 #include<QPainter>
 #include"icon.h"
 #include"bullet.h"
-
+#include"soilbullet.h"
+#include"ironbullet.h"
+#include"snowsoilbul.h"
+#include"ironsnowbullet.h"
 class defenobj
 {
 public:

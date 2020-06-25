@@ -15,6 +15,25 @@ Mwin::Mwin(QWidget *parent) :
     player->play();//放音乐
 
 
+
+    QPixmap pixall(":/picture/model.jpg");
+    QPixmap pix=pixall.copy(8*32,6*32,64,64);//截取红色房子
+    ui->redplabel->setPixmap(pix);//设置图片
+    pix=pixall.copy(10*32,6*32,64,64);//截取蓝色房子
+    ui->blueplabel->setPixmap(pix);//设置图片
+    pix=pixall.copy(12*32,6*32,64,64);//截取土石塔
+    ui->soiltlabel->setPixmap(pix);//设置图片
+    pix=pixall.copy(14*32,6*32,64,64);//截取铁塔
+    ui->irontlabel->setPixmap(pix);//设置图片
+    pix=pixall.copy(12*32,14*32,64,64);//截取雪房
+    ui->snowplabel->setPixmap(pix);//设置图片
+    pix=pixall.copy(14*32,14*32,64,64);//截取雪塔
+    ui->snowtlabel->setPixmap(pix);//设置图片
+    //此处在控件上添加图画
+
+    this->changecheck(1);
+    this->nowtower=1;//初始化，选择红塔
+
 }
 //Mwin的构造函数
 
@@ -55,6 +74,7 @@ void Mwin::rule(){
     }
     int golden=this->myworld.getgold();//得到金币数量
     ui->moneybox->setValue(golden);//更新金币数量
+    this->repaint();
 
 }
 //以上为五个槽函数
@@ -93,32 +113,31 @@ void Mwin::paintEvent(QPaintEvent *event){
 void Mwin::keyPressEvent(QKeyEvent *event){
     switch (event->key()) {
     case Qt::Key_U:
-        this->myworld.getorder(1);
+        this->changecheck(1);
+        this->nowtower=1;
         break;
     case Qt::Key_I:
-        this->myworld.getorder(2);
+        this->changecheck(2);
+        this->nowtower=2;
         break;
     case Qt::Key_O:
-        this->myworld.getorder(3);
+        this->changecheck(3);
+        this->nowtower=3;
         break;
     case Qt::Key_J:
-        this->myworld.getorder(4);
+        this->changecheck(4);
+        this->nowtower=4;
         break;
     case Qt::Key_K:
-        this->myworld.getorder(5);
+        this->changecheck(5);
+        this->nowtower=5;
         break;
     case Qt::Key_L:
-        this->myworld.getorder(6);
+        this->changecheck(6);
+        this->nowtower=6;
         break;
-   //字母UIOJKL对应不同塔的类型，进行添加
-    case Qt::Key_W:
-        this->myworld.changeline(0);
-        break;
-    case Qt::Key_S:
-        this->myworld.changeline(1);
-        break;
-   //上键和下键对应行的变化，初始为第一行添加塔
-    }
+   //字母UIOJKL对应不同塔的类型，进行checkbox的勾选和现今选定类型的变化
+      }
     this->repaint();
 }
 //创建键盘事件
@@ -145,4 +164,95 @@ void Mwin::changeprogress(){
         win->play();//播放
         //成功的声音
     }
+}
+void Mwin::changecheck(int type){
+    ui->redpcheck->setCheckState(Qt::Unchecked);
+    ui->bluepcheck->setCheckState(Qt::Unchecked);
+    ui->soiltcheck->setCheckState(Qt::Unchecked);
+    ui->irontcheck->setCheckState(Qt::Unchecked);
+    ui->snowpcheck->setCheckState(Qt::Unchecked);
+    ui->snowtcheck->setCheckState(Qt::Unchecked);//先全部设为未选
+    switch (type) {
+    case 1:
+       ui->redpcheck->setCheckState(Qt::Checked);
+        break;
+    case 2:
+       ui->bluepcheck->setCheckState(Qt::Checked);
+        break;
+    case 3:
+       ui->soiltcheck->setCheckState(Qt::Checked);
+        break;
+    case 4:
+       ui->irontcheck->setCheckState(Qt::Checked);
+        break;
+    case 5:
+       ui->snowpcheck->setCheckState(Qt::Checked);
+        break;
+    case 6:
+       ui->snowtcheck->setCheckState(Qt::Checked);
+        break;
+    }
+}
+
+
+//以下为点击添加塔
+void Mwin::on_tower1_clicked()
+{
+    this->myworld.getorder(nowtower,256,300);//在第1个按钮位置放塔
+}
+
+void Mwin::on_tower2_clicked()
+{
+    this->myworld.getorder(nowtower,320,300);//在第2个按钮位置放塔
+}
+
+void Mwin::on_tower3_clicked()
+{
+    this->myworld.getorder(nowtower,384,300);//在第3个按钮位置放塔
+}
+
+void Mwin::on_tower4_clicked()
+{
+    this->myworld.getorder(nowtower,448,300);//在第4个按钮位置放塔
+}
+
+void Mwin::on_tower5_clicked()
+{
+    this->myworld.getorder(nowtower,256,400);//在第2行第1个按钮位置放塔
+}
+
+void Mwin::on_tower6_clicked()
+{
+    this->myworld.getorder(nowtower,320,400);//在第2行第2个按钮位置放塔
+}
+
+void Mwin::on_tower7_clicked()
+{
+    this->myworld.getorder(nowtower,384,400);//在第2行第3个按钮位置放塔
+}
+
+
+void Mwin::on_tower8_clicked()
+{
+    this->myworld.getorder(nowtower,448,400);//在第2行第4个按钮位置放塔
+}
+
+void Mwin::on_tower9_clicked()
+{
+    this->myworld.getorder(nowtower,256,500);//在第3行第1个按钮位置放塔
+}
+
+void Mwin::on_tower10_clicked()
+{
+    this->myworld.getorder(nowtower,320,500);//在第3行第2个按钮位置放塔
+}
+
+void Mwin::on_tower11_clicked()
+{
+    this->myworld.getorder(nowtower,384,500);//在第3行第3个按钮位置放塔
+}
+
+void Mwin::on_tower12_clicked()
+{
+    this->myworld.getorder(nowtower,448,500);//在第3行第4个按钮位置放塔
 }

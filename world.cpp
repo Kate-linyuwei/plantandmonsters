@@ -2,15 +2,7 @@
 #include"player.h"
 #include<QMediaPlayer>
 #include <QPainter>
-int world::Line=300;//初始化,300
-int world::linetower[3]={0,0,0};//初始化每行都没塔
 bool world::losecheck=false;//初始没有输
-void world::changeline(int ord){
-    if(ord==1)
-        world::Line++;
-    else
-        world::Line--;
-}//通过外部按键改变行
 world::world()
 {
 
@@ -18,8 +10,7 @@ world::world()
 void world::originset(){
     defenobj* obj=new defenobj;//创建指针，分配空间
     obj->reset("redpalace",256,300);
-    world::linetower[0]++;
-    //初始塔,并且在相应行数加上塔的数目
+    //初始塔,并且加上塔的数目
 
     bullet* bul=new bullet;
     bul=obj->creatbullet();
@@ -63,8 +54,13 @@ void world::rules(){
         for(b=bullets.begin();b<bullets.end();b++){
             if((*m)->getX()==(*b)->getX()&&(*m)->getY()==(*b)->getY()){
                 (*m)->loseblood();//怪遇到子弹，降低血量
-                delete(*b);//子弹打怪后失效,析构
-                bullets.erase(b);//在子弹向量内清除
+                if((*b)->crosscheck()==false){
+                    delete(*b);//子弹打怪后失效,析构
+                    bullets.erase(b);//在子弹向量内清除
+                }//不具备穿透功能的子弹会遇怪消失
+                if((*b)->stepback()==true){
+                    (*m)->backstep();//能打退怪物的子弹实现功能
+                }
                 if((*m)->getblood()<=0){
                     (*m)->death();//怪物没血，死去声音
                     delete (*m);//回收改怪物，析构
@@ -106,14 +102,14 @@ void world::endcheck(){
         }
     }
 
-   vector<bullet*>::iterator b;//子弹迭代器
-   for(b=bullets.begin();b<bullets.end();b++){
-       if((*b)->getX()>700){
-           delete(*b);//子弹超出界面后失效,析构
-           bullets.erase(b);//在子弹向量内清除
-       }
-   }
-   //清除无用的子弹，节省空间
+    vector<bullet*>::iterator b;//子弹迭代器
+    for(b=bullets.begin();b<bullets.end();b++){
+        if((*b)->getX()>700){
+            delete(*b);//子弹超出界面后失效,析构
+            bullets.erase(b);//在子弹向量内清除
+        }
+    }
+    //清除无用的子弹，节省空间
 }
 void world::addmonster0(int xx, int yy, int type){
     if(type==1){
@@ -129,10 +125,21 @@ void world::addmonster0(int xx, int yy, int type){
 }
 void world::monstermove0(){
     int m=monsters.size();
+    int t=towers.size();//塔的数量，用于判断塔有没有挡住
     for(int i=0;i<m;i++){
-        monsters.at(i)->move();
-    }//依次移动
-}
+        int flag=0;//塔有没挡住
+        for(int j=0;j<t;j++){
+            if((monsters[i]->getX()==towers[j]->getX())&&(monsters[i]->getY()==towers[j]->getY())){
+                flag=1;
+                break;//遇到塔，停下，不再前进
+            }
+        }
+        if(flag==0){
+            monsters.at(i)->move();//没被挡住才要移动
+        }
+    }
+}//依次移动
+
 void world::addbullet0(){
     int t=towers.size();
     for(int j=0;j<t;j++){
@@ -149,18 +156,28 @@ void world::bulletmove0(){
 
 
 
-void world::getorder(int type){
-    if(this->play.getmoney()>=100){
-    int countline=Line%3;//所在行数
-    int counttower=linetower[countline];//所在行有多少个塔
-    defenobj* tow;
-    tow=this->play.addnewobj(256+counttower*64,300+countline*100,type);//得到创建新塔的返回指针
-    this->towers.push_back(tow);
-    world::linetower[countline]++;
-    //加入列表,在该行增加塔数
-    this->play.pay();//买塔花金币100
+void world::getorder(int type, int xx, int yy){
+    int flag=0;//判断是否符合买塔条件
+    if((type<=3)&&(this->play.getmoney()>=100)){
+        flag=1;//符合条件
+        this->play.pay(100);//买前三种塔花金币100
     }
-    else {
+    else if(type>3&&type<=5&&(this->play.getmoney()>=150)){
+        flag=1;//符合条件
+        this->play.pay(150);//买第4或5种塔花150金币
+    }
+    else if(type==6&&(this->play.getmoney()>=200)){
+        flag=1;
+        this->play.pay(200);//符合条件买最后一种塔
+    }
+    else
+        flag=0;//三种情况都不符合，不满足条件
+    if(flag==1){
+        defenobj* tow;//满足条件新增塔
+        tow=this->play.addnewobj(xx,yy,type);//得到创建新塔的返回指针
+        this->towers.push_back(tow);//加入新塔，放进向量中
+    }
+    else {//不满足条件放音乐提醒
         QMediaPlayer * nomoney=new QMediaPlayer;//创建QMediaPlayer指针
         nomoney->setMedia(QUrl("qrc:/music/nomoney.mp3"));//选择没钱的声音
         nomoney->setVolume(10);//设置音效

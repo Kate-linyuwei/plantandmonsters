@@ -32,7 +32,11 @@ SOURCES += \
     icon.cpp \
     bullet.cpp \
     world.cpp \
-    player.cpp
+    player.cpp \
+    soilbullet.cpp \
+    ironbullet.cpp \
+    snowsoilbul.cpp \
+    ironsnowbullet.cpp
 
 HEADERS += \
         mwin.h \
@@ -41,7 +45,11 @@ HEADERS += \
     icon.h \
     bullet.h \
     world.h \
-    player.h
+    player.h \
+    soilbullet.h \
+    ironbullet.h \
+    snowsoilbul.h \
+    ironsnowbullet.h
 
 FORMS += \
         mwin.ui

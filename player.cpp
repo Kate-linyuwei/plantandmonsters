@@ -1,5 +1,5 @@
 #include "player.h"
-int player::money=200;//初始200金币
+int player::money=300;//初始200金币
 defenobj*player::addnewobj(int xx, int yy,int type){
     defenobj* palace=new defenobj; //创建新的塔指针
     switch (type) {
@@ -28,8 +28,8 @@ defenobj*player::addnewobj(int xx, int yy,int type){
 void player::earn(){
     money=money+100;//打死一个怪，得到100金币
 }
-void player::pay(){
-    money=money-100;//买一个塔，花费100金币
+void player::pay(int yuan){
+    money=money-yuan;//买一个塔，花费100金币
 }
 
 
