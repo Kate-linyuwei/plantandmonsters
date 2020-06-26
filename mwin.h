@@ -41,29 +41,17 @@ private slots:
     void on_beginbottom_clicked();
     void changeprogress();//更改进度的槽函数
     void on_tower1_clicked();
-
     void on_tower2_clicked();
-
     void on_tower3_clicked();
-
     void on_tower4_clicked();
-
     void on_tower5_clicked();
-
     void on_tower6_clicked();
-
     void on_tower7_clicked();
-
     void on_tower8_clicked();
-
     void on_tower9_clicked();
-
     void on_tower10_clicked();
-
     void on_tower11_clicked();
-
     void on_tower12_clicked();
-
 private:
     Ui::Mwin *ui;
     world myworld;//创建世界

@@ -185,7 +185,15 @@ void world::getorder(int type, int xx, int yy){
     }
 
 }
-
+void world::removetower(int xx, int yy){
+     vector<defenobj*>::iterator tow;//塔迭代器
+    for(tow=towers.begin();tow<towers.end();tow++){
+        if((*tow)->getX()==xx&&(*tow)->getY()==yy){
+            delete (*tow);//拆除塔，析构
+            towers.erase(tow);//在塔向量内清除
+        }
+    }
+}
 
 
 

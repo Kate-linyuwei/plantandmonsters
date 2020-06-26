@@ -519,6 +519,45 @@ p, li { white-space: pre-wrap; }
      <string>add</string>
     </property>
    </widget>
+   <widget class="QLabel" name="removelabel">
+    <property name="geometry">
+     <rect>
+      <x>570</x>
+      <y>140</y>
+      <width>64</width>
+      <height>64</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>remove</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_5">
+    <property name="geometry">
+     <rect>
+      <x>570</x>
+      <y>200</y>
+      <width>121</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>R  remove</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="Rcheck">
+    <property name="geometry">
+     <rect>
+      <x>550</x>
+      <y>70</y>
+      <width>81</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>R</string>
+    </property>
+   </widget>
    <zorder>tower8</zorder>
    <zorder>tower7</zorder>
    <zorder>tower6</zorder>
@@ -556,6 +595,9 @@ p, li { white-space: pre-wrap; }
    <zorder>tower11</zorder>
    <zorder>tower12</zorder>
    <zorder>tower10</zorder>
+   <zorder>removelabel</zorder>
+   <zorder>label_5</zorder>
+   <zorder>Rcheck</zorder>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
