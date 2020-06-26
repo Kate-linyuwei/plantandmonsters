@@ -1,24 +1,47 @@
-新增功能：
-1.修复bug:定时检查怪物和子弹，塔相遇，实现相应扣血和消失
-文件：world.cpp  mwin.cpp 
-函数 world::rules mwin::rule
-2.添加背景图片和音乐
-文件： plantsandmonster.qrc  mwin.cpp 
-函数:mwin::paintevent mwin::mwin
-3.添加开始按钮，点击开始按钮才开始游戏
-文件：mwin.ui(QPushbuttom beginbuttom) mwin.h mwin.cpp 
-函数 mwin::on_beginbuttom_clicked
-4.增加为3行怪物和塔，实现行的变换
-文件： world.h world.cpp mwin.cpp
-函数：world:Line[3](静态变量) world::changeline mwin::keypressevent world::addmonster0 world::getorder
-4.添加怪物到达房子就停止计时且失败的规则
-文件：world.h world.cpp mwin.cpp
-函数：world::losecheck(静态变量) world::getlosecheck world::changelose world::endcheck world::getorder mwin::rule
-5.添加进度条，当进度条满格且怪物未突破房子就赢
-文件：mwin.ui(QprogressBar proBar,QLabel label_2) mwin.h mwin.cpp
-函数：mwin::changeprogress
-6.添加规则说明，在游戏界面的右边
-文件：mwin.ui(QLabel label_3,QTextBrowser textBrowser) 
-7.添加金币机制，买塔花费100金币，打死怪物得到100金币，初始200金币，显示在界面左上方
-文件：mwin.ui(QLabel   label,Qspinbox  moneybox) player.h player.cpp world.h mwin.cpp
-函数：player::money(静态变量) player::earn player::pay  player::getmoney world::getgold mwin::rule
+1.增加塔信息槽和checkbox，在界面上方，利于选择
+文件 mwin.ui 
+控件：QLabel QCheckbox
+类 Mwin 文件 mwin.cpp
+函数：explicit Mwin(QWidget *parent = 0)
+2.修复塔被摧毁后无法在原来位置添加的bug,改按键添加塔为点击任意add按钮添加，增加自由度
+文件 mwin.ui
+控件：QPushbuttom
+类 Mwin 文件 mwin.h mwin.cpp
+函数:
+void on_tower1_clicked()
+void on_tower2_clicked()
+void on_tower3_clicked()
+void on_tower4_clicked()
+void on_tower5_clicked()
+void on_tower6_clicked()
+void on_tower7_clicked()
+void on_tower8_clicked()
+void on_tower9_clicked()
+void on_tower10_clicked()
+void on_tower11_clicked()
+void on_tower12_clicked()
+3.为不同的塔设定不同的子弹和功能，更改塔的价格
+类 bullet 文件 bullet.h
+函数：
+virtual bool crosscheck()const{return false;}//是否能穿过怪物
+virtual bool stepback()const{return false;}//是否能让怪物退后
+virtual ~bullet(){}//虚析构
+类 ironbullet 文件 ironbullet.h ironbullet.cpp
+函数：
+ironbullet(int xx,int yy);
+bool crosscheck()const{return true;}//能否穿透怪物
+类 soilbullet 文件 soilbullet.h soilbullet.cpp
+函数：
+soilbullet(int xx,int yy);//构造函数
+void move();//移动
+类 snowsoilbullet 文件 snowsoilbul.h snowsoilbullet.cpp
+函数：
+snowsoilbul(int xx,int yy);
+bool stepback()const{return true;}//能够让怪物后退
+类ironsnowbullet 文件 ironsnowbullet.h ironsnowbullet.cpp
+函数：
+ironsnowbullet(int xx,int yy);//构造函数
+bool crosscheck()const{return true;}//能否穿透怪物
+bool stepback()const{return true;}//能够让怪物后退
+
+
