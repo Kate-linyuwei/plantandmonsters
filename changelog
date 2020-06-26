@@ -1,0 +1,47 @@
+1.增加塔信息槽和checkbox，在界面上方，利于选择
+文件 mwin.ui 
+控件：QLabel QCheckbox
+类 Mwin 文件 mwin.cpp
+函数：explicit Mwin(QWidget *parent = 0)
+2.修复塔被摧毁后无法在原来位置添加的bug,改按键添加塔为点击任意add按钮添加，增加自由度
+文件 mwin.ui
+控件：QPushbuttom
+类 Mwin 文件 mwin.h mwin.cpp
+函数:
+void on_tower1_clicked()
+void on_tower2_clicked()
+void on_tower3_clicked()
+void on_tower4_clicked()
+void on_tower5_clicked()
+void on_tower6_clicked()
+void on_tower7_clicked()
+void on_tower8_clicked()
+void on_tower9_clicked()
+void on_tower10_clicked()
+void on_tower11_clicked()
+void on_tower12_clicked()
+3.为不同的塔设定不同的子弹和功能，更改塔的价格
+类 bullet 文件 bullet.h
+函数：
+virtual bool crosscheck()const{return false;}//是否能穿过怪物
+virtual bool stepback()const{return false;}//是否能让怪物退后
+virtual ~bullet(){}//虚析构
+类 ironbullet 文件 ironbullet.h ironbullet.cpp
+函数：
+ironbullet(int xx,int yy);
+bool crosscheck()const{return true;}//能否穿透怪物
+类 soilbullet 文件 soilbullet.h soilbullet.cpp
+函数：
+soilbullet(int xx,int yy);//构造函数
+void move();//移动
+类 snowsoilbullet 文件 snowsoilbul.h snowsoilbullet.cpp
+函数：
+snowsoilbul(int xx,int yy);
+bool stepback()const{return true;}//能够让怪物后退
+类ironsnowbullet 文件 ironsnowbullet.h ironsnowbullet.cpp
+函数：
+ironsnowbullet(int xx,int yy);//构造函数
+bool crosscheck()const{return true;}//能否穿透怪物
+bool stepback()const{return true;}//能够让怪物后退
+
+
