@@ -20,8 +20,8 @@ public:
 
     defenobj(defenobj &obj0);//复制构造
     virtual ~defenobj(){}//析构函数
-    bullet* creatbullet();//制造子弹
-    void death();//死去的声音
+    bullet* creatbullet(bool flag);//制造子弹
+     void death();//死去的声音
     void paint(QPainter*p);//画出对应图像
     void loseblood(){
         this->_blood--;
@@ -35,7 +35,11 @@ public:
     int getY()const{
         return this->_y;
     }//返回坐标
+    void changelevel();//升级
+    int getlevel()const{return this->level;}//得到等级
+    void addblood(){this->_blood=4;}//升为2级时加血
 protected:
+    int level;//等级
     string _name;//名字
     int _x;
     int _y;//位置坐标

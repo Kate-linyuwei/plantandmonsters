@@ -13,7 +13,7 @@ void world::originset(){
     //初始塔,并且加上塔的数目
 
     bullet* bul=new bullet;
-    bul=obj->creatbullet();
+    bul=obj->creatbullet(false);
     //初始子弹
 
     monster*mons=new monster;
@@ -113,13 +113,11 @@ void world::endcheck(){
 }
 void world::addmonster0(int xx, int yy, int type){
     if(type==1){
-        monster* newmon=new monster;
-        newmon->reset("monster1",xx,yy);
+        monster* newmon=new monster("monster1",xx,yy);
         this->monsters.push_back(newmon);
     }
     else{
-        monster* newmon=new monster;
-        newmon->reset("monster2",xx,yy);
+        monster* newmon=new monster("monster2",xx,yy);
         this->monsters.push_back(newmon);
     }//根据类型产生怪物
 }
@@ -143,8 +141,12 @@ void world::monstermove0(){
 void world::addbullet0(){
     int t=towers.size();
     for(int j=0;j<t;j++){
-        bullet*bu=towers.at(j)->creatbullet();
+        bullet*bu=towers.at(j)->creatbullet(false);
         this->bullets.push_back(bu);
+        if(towers.at(j)->getlevel()>=3){
+            bullet*bu2=towers.at(j)->creatbullet(true);
+            this->bullets.push_back(bu2);
+        }//三级以上产生两倍子弹
     }//添加子弹
 }
 void world::bulletmove0(){
@@ -186,11 +188,21 @@ void world::getorder(int type, int xx, int yy){
 
 }
 void world::removetower(int xx, int yy){
-     vector<defenobj*>::iterator tow;//塔迭代器
+    vector<defenobj*>::iterator tow;//塔迭代器
     for(tow=towers.begin();tow<towers.end();tow++){
         if((*tow)->getX()==xx&&(*tow)->getY()==yy){
             delete (*tow);//拆除塔，析构
             towers.erase(tow);//在塔向量内清除
+        }
+    }
+}
+void world::levelchange(int xx, int yy){
+    vector<defenobj*>::iterator tow;//塔迭代器
+    for(tow=towers.begin();tow<towers.end();tow++){
+        if((*tow)->getX()==xx&&(*tow)->getY()==yy){
+            (*tow)->changelevel();//升级对应的塔
+            if((*tow)->getlevel()==2)
+                (*tow)->addblood();//2级加血
         }
     }
 }

@@ -364,7 +364,7 @@ p, li { white-space: pre-wrap; }
      <string notr="true"/>
     </property>
     <property name="text">
-     <string>add</string>
+     <string>add/rem</string>
     </property>
    </widget>
    <widget class="QPushButton" name="tower2">
@@ -380,7 +380,7 @@ p, li { white-space: pre-wrap; }
      <string notr="true"/>
     </property>
     <property name="text">
-     <string>add</string>
+     <string>add/rem</string>
     </property>
    </widget>
    <widget class="QPushButton" name="tower3">
@@ -393,7 +393,7 @@ p, li { white-space: pre-wrap; }
      </rect>
     </property>
     <property name="text">
-     <string>add</string>
+     <string>add/rem</string>
     </property>
    </widget>
    <widget class="QPushButton" name="tower4">
@@ -409,7 +409,7 @@ p, li { white-space: pre-wrap; }
      <bool>false</bool>
     </property>
     <property name="text">
-     <string>add</string>
+     <string>add/rem</string>
     </property>
    </widget>
    <widget class="QPushButton" name="tower5">
@@ -422,7 +422,7 @@ p, li { white-space: pre-wrap; }
      </rect>
     </property>
     <property name="text">
-     <string>add</string>
+     <string>add/rem</string>
     </property>
    </widget>
    <widget class="QPushButton" name="tower6">
@@ -435,7 +435,7 @@ p, li { white-space: pre-wrap; }
      </rect>
     </property>
     <property name="text">
-     <string>add</string>
+     <string>add/rem</string>
     </property>
    </widget>
    <widget class="QPushButton" name="tower7">
@@ -448,7 +448,7 @@ p, li { white-space: pre-wrap; }
      </rect>
     </property>
     <property name="text">
-     <string>add</string>
+     <string>add/rem</string>
     </property>
    </widget>
    <widget class="QPushButton" name="tower8">
@@ -461,7 +461,7 @@ p, li { white-space: pre-wrap; }
      </rect>
     </property>
     <property name="text">
-     <string>add</string>
+     <string>add/rem</string>
     </property>
    </widget>
    <widget class="QPushButton" name="tower9">
@@ -474,7 +474,7 @@ p, li { white-space: pre-wrap; }
      </rect>
     </property>
     <property name="text">
-     <string>add</string>
+     <string>add/rem</string>
     </property>
    </widget>
    <widget class="QPushButton" name="tower10">
@@ -490,7 +490,7 @@ p, li { white-space: pre-wrap; }
      <bool>true</bool>
     </property>
     <property name="text">
-     <string>add</string>
+     <string>add/rem</string>
     </property>
    </widget>
    <widget class="QPushButton" name="tower11">
@@ -503,7 +503,7 @@ p, li { white-space: pre-wrap; }
      </rect>
     </property>
     <property name="text">
-     <string>add</string>
+     <string>add/rem</string>
     </property>
    </widget>
    <widget class="QPushButton" name="tower12">
@@ -516,7 +516,7 @@ p, li { white-space: pre-wrap; }
      </rect>
     </property>
     <property name="text">
-     <string>add</string>
+     <string>add/rem</string>
     </property>
    </widget>
    <widget class="QLabel" name="removelabel">
@@ -542,7 +542,7 @@ p, li { white-space: pre-wrap; }
      </rect>
     </property>
     <property name="text">
-     <string>R  remove</string>
+     <string>R remove</string>
     </property>
    </widget>
    <widget class="QCheckBox" name="Rcheck">
@@ -556,6 +556,45 @@ p, li { white-space: pre-wrap; }
     </property>
     <property name="text">
      <string>R</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="levelcheck">
+    <property name="geometry">
+     <rect>
+      <x>660</x>
+      <y>77</y>
+      <width>131</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>levelup</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="levellabel">
+    <property name="geometry">
+     <rect>
+      <x>660</x>
+      <y>140</y>
+      <width>64</width>
+      <height>64</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>levellabel</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_6">
+    <property name="geometry">
+     <rect>
+      <x>660</x>
+      <y>200</y>
+      <width>121</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string> W levelup</string>
     </property>
    </widget>
    <zorder>tower8</zorder>
@@ -598,6 +637,9 @@ p, li { white-space: pre-wrap; }
    <zorder>removelabel</zorder>
    <zorder>label_5</zorder>
    <zorder>Rcheck</zorder>
+   <zorder>levelcheck</zorder>
+   <zorder>levellabel</zorder>
+   <zorder>label_6</zorder>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">

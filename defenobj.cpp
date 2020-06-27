@@ -8,7 +8,8 @@ defenobj::defenobj(string name, int xx, int yy):_icon(_icon.matchicon(name))
     this->_x=xx;
     this->_y=yy;
     this->_blood=2;
-\
+    level=1;//一级
+    \
 }//构造函数
 void defenobj::reset(string name, int xx, int yy){
     this->_name=name;
@@ -16,6 +17,7 @@ void defenobj::reset(string name, int xx, int yy){
     this->_y=yy;
     this->_icon=_icon.matchicon(name);
     this->_blood=2;
+    level=1;//初始1级
 }//重设函数
 
 defenobj::defenobj(defenobj &obj0):_icon(_icon.matchicon(obj0._name))
@@ -43,26 +45,58 @@ void defenobj::paint(QPainter *p)
     //得到对应截图
     p->drawImage(this->_x,this->_y,this->_pic);//画出对应图片
 }
-bullet *defenobj::creatbullet(){
-    if(this->_name=="soiltower"){
-        soilbullet*sbul=new soilbullet(this->getX(),this->getY());
-        return sbul;//特殊的塔，特殊的子弹
+bullet *defenobj::creatbullet(bool flag){
+    if(flag==false){
+        if(this->_name=="soiltower"){
+            soilbullet*sbul=new soilbullet(this->getX(),this->getY());
+            return sbul;//特殊的塔，特殊的子弹
+        }
+        else if(this->_name=="irontower"){
+            ironbullet*ibul=new ironbullet(this->getX(),this->getY());
+            return ibul;//铁塔对应铁子弹
+        }
+        else if(this->_name=="snowpalace"){
+            snowsoilbul*snowsbul=new snowsoilbul(this->getX(),this->getY());
+            return snowsbul;//雪房对应子弹
+        }
+        else if(this->_name=="snowtower"){
+            ironsnowbullet*ironsnowbul=new ironsnowbullet(this->getX(),this->getY());
+            return ironsnowbul;//雪塔对应子弹
+        }
+        else{
+            bullet* bul=new bullet;//创建子弹
+            bul->reset(this->getX(),this->getY());//重设bullet
+            return bul;//返回指针
+        }}
+    else {
+        if(this->_name=="soiltower"){
+            soilbullet*sbul=new soilbullet(this->getX()+32,this->getY());
+            return sbul;//特殊的塔，特殊的子弹
+        }
+        else if(this->_name=="irontower"){
+            ironbullet*ibul=new ironbullet(this->getX()+32,this->getY());
+            return ibul;//铁塔对应铁子弹
+        }
+        else if(this->_name=="snowpalace"){
+            snowsoilbul*snowsbul=new snowsoilbul(this->getX()+32,this->getY());
+            return snowsbul;//雪房对应子弹
+        }
+        else if(this->_name=="snowtower"){
+            ironsnowbullet*ironsnowbul=new ironsnowbullet(this->getX()+32,this->getY());
+            return ironsnowbul;//雪塔对应子弹
+        }
+        else{
+            bullet* bul=new bullet;//创建子弹
+            bul->reset(this->getX()+32,this->getY());//重设bullet
+            return bul;//返回指针
+        }
     }
-    else if(this->_name=="irontower"){
-        ironbullet*ibul=new ironbullet(this->getX(),this->getY());
-        return ibul;//铁塔对应铁子弹
-    }
-    else if(this->_name=="snowpalace"){
-        snowsoilbul*snowsbul=new snowsoilbul(this->getX(),this->getY());
-        return snowsbul;//雪房对应子弹
-    }
-    else if(this->_name=="snowtower"){
-        ironsnowbullet*ironsnowbul=new ironsnowbullet(this->getX(),this->getY());
-        return ironsnowbul;//雪塔对应子弹
-    }
-    else{
-    bullet* bul=new bullet;//创建子弹
-    bul->reset(this->getX(),this->getY());//重设bullet
-    return bul;//返回指针
 }
+void defenobj::changelevel(){
+    this->level++;//升级
+    QMediaPlayer * up=new QMediaPlayer;//创建QMediaPlayer指针
+    up->setMedia(QUrl("qrc:/music/levelup.mp3"));//选择声音
+    up->setVolume(20);//设置音效
+    up->play();//播放
+
 }

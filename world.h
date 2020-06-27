@@ -26,6 +26,7 @@ public:
     void changelose(){losecheck=true;}//更改输赢状态
     int getgold()const{return this->play.getmoney();}//得到金币
     void removetower(int xx,int yy);//拆塔
+    void levelchange(int xx,int yy);//升级塔
 private:
     vector<defenobj*>towers;//塔向量
     vector<bullet*>bullets;//子弹向量

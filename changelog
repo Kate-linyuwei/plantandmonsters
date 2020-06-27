@@ -1,3 +1,4 @@
+﻿此次有五个改动
 1.增加塔信息槽和checkbox，在界面上方，利于选择
 文件 mwin.ui 
 控件：QLabel QCheckbox
@@ -43,5 +44,40 @@ bool stepback()const{return true;}//能够让怪物后退
 ironsnowbullet(int xx,int yy);//构造函数
 bool crosscheck()const{return true;}//能否穿透怪物
 bool stepback()const{return true;}//能够让怪物后退
-
-
+4.进度每增加20%，怪物的血量增加1，实现难度随进度增加
+类 monster 文件 monster.h monster.cpp
+变量：
+static int bornblood;//初始血量，用于加大难度
+类 Mwin 文件 Mwin.cpp
+函数：
+void Mwin::changeprogress()
+5.增加升级功能，塔初始1级，2级血量翻倍，3级产生两倍子弹
+类 defenobj 文件 defenobj.h defenobj.cpp
+变量：int level;//等级
+函数：
+void changelevel();//升级
+int getlevel()const{return this->level;}//得到等级
+void addblood(){this->_blood=4;}//升为2级时加血
+类：world 文件 world.cpp
+函数：
+void levelchange(int xx,int yy);//升级塔
+类 mwin.ui
+QLabel
+QCheckbox
+类 Mwin 文件 Mwin.cpp
+函数：
+explicit Mwin(QWidget *parent = 0)
+void on_tower1_clicked()和其他pushbuttom的槽函数
+void keyPressEvent(QKeyEvent *event);//建立按键联系
+6.拆塔功能
+类 mwin.ui
+QLabel
+QCheckbox
+类 Mwin 文件 Mwin.cpp
+函数：
+explicit Mwin(QWidget *parent = 0)
+void on_tower1_clicked()和其他pushbuttom的槽函数
+void keyPressEvent(QKeyEvent *event);//建立按键联系
+类 world 文件 world.h world.cpp
+函数：
+void removetower(int xx,int yy);//拆塔
