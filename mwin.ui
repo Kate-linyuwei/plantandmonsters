@@ -85,8 +85,8 @@
    <widget class="QTextBrowser" name="textBrowser">
     <property name="geometry">
      <rect>
-      <x>760</x>
-      <y>230</y>
+      <x>780</x>
+      <y>340</y>
       <width>331</width>
       <height>161</height>
      </rect>
@@ -101,14 +101,19 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;click &amp;quot;add&amp;quot; to add tower&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;U,I,O cost$100 J,K cost$150 L cost$200&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;kill a monster earn 100 golds&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;press R and click the buttom can remove the tower&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;press W and click the bottom can level up&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Lv.1 with 2 blood&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Lv.2 with 4 blood&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Lv.3 with 4 blood and double bullet&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Thanks for reading!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_3">
     <property name="geometry">
      <rect>
-      <x>760</x>
-      <y>180</y>
+      <x>780</x>
+      <y>280</y>
       <width>111</width>
       <height>31</height>
      </rect>
@@ -364,7 +369,7 @@ p, li { white-space: pre-wrap; }
      <string notr="true"/>
     </property>
     <property name="text">
-     <string>add/rem</string>
+     <string>ad/re</string>
     </property>
    </widget>
    <widget class="QPushButton" name="tower2">
@@ -380,7 +385,7 @@ p, li { white-space: pre-wrap; }
      <string notr="true"/>
     </property>
     <property name="text">
-     <string>add/rem</string>
+     <string>ad/re</string>
     </property>
    </widget>
    <widget class="QPushButton" name="tower3">
@@ -393,7 +398,7 @@ p, li { white-space: pre-wrap; }
      </rect>
     </property>
     <property name="text">
-     <string>add/rem</string>
+     <string>ad/re</string>
     </property>
    </widget>
    <widget class="QPushButton" name="tower4">
@@ -409,7 +414,7 @@ p, li { white-space: pre-wrap; }
      <bool>false</bool>
     </property>
     <property name="text">
-     <string>add/rem</string>
+     <string>ad/re</string>
     </property>
    </widget>
    <widget class="QPushButton" name="tower5">
@@ -422,7 +427,7 @@ p, li { white-space: pre-wrap; }
      </rect>
     </property>
     <property name="text">
-     <string>add/rem</string>
+     <string>ad/re</string>
     </property>
    </widget>
    <widget class="QPushButton" name="tower6">
@@ -435,7 +440,7 @@ p, li { white-space: pre-wrap; }
      </rect>
     </property>
     <property name="text">
-     <string>add/rem</string>
+     <string>ad/re</string>
     </property>
    </widget>
    <widget class="QPushButton" name="tower7">
@@ -448,7 +453,7 @@ p, li { white-space: pre-wrap; }
      </rect>
     </property>
     <property name="text">
-     <string>add/rem</string>
+     <string>ad/re</string>
     </property>
    </widget>
    <widget class="QPushButton" name="tower8">
@@ -461,7 +466,7 @@ p, li { white-space: pre-wrap; }
      </rect>
     </property>
     <property name="text">
-     <string>add/rem</string>
+     <string>ad/re</string>
     </property>
    </widget>
    <widget class="QPushButton" name="tower9">
@@ -474,7 +479,7 @@ p, li { white-space: pre-wrap; }
      </rect>
     </property>
     <property name="text">
-     <string>add/rem</string>
+     <string>ad/re</string>
     </property>
    </widget>
    <widget class="QPushButton" name="tower10">
@@ -490,7 +495,7 @@ p, li { white-space: pre-wrap; }
      <bool>true</bool>
     </property>
     <property name="text">
-     <string>add/rem</string>
+     <string>ad/re</string>
     </property>
    </widget>
    <widget class="QPushButton" name="tower11">
@@ -503,7 +508,7 @@ p, li { white-space: pre-wrap; }
      </rect>
     </property>
     <property name="text">
-     <string>add/rem</string>
+     <string>ad/re</string>
     </property>
    </widget>
    <widget class="QPushButton" name="tower12">
@@ -516,7 +521,7 @@ p, li { white-space: pre-wrap; }
      </rect>
     </property>
     <property name="text">
-     <string>add/rem</string>
+     <string>ad/re</string>
     </property>
    </widget>
    <widget class="QLabel" name="removelabel">
@@ -568,7 +573,7 @@ p, li { white-space: pre-wrap; }
      </rect>
     </property>
     <property name="text">
-     <string>levelup</string>
+     <string>W</string>
     </property>
    </widget>
    <widget class="QLabel" name="levellabel">
